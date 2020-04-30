@@ -22,7 +22,7 @@ extension Key {
 // Create my class
 class MyClass {
     // Use the property wrapper to add new value to `UserDefaults`
-    @UserDefault(key: .sdkPort, defaultValue: 8080)
+    @ObservableUserDefaults(key: .sdkPort, defaultValue: 8080)
     var sdkPort: Int
 }
 
