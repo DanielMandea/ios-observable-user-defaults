@@ -10,7 +10,15 @@ import Foundation
 
 public struct ObservableKey: RawRepresentable {
     public let rawValue: String
+    
+    // MSRK: - Init
+    
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
 }
+
+// MARK: - ExpressibleByStringLiteral
 
 extension ObservableKey: ExpressibleByStringLiteral {
     public init(stringLiteral: String) {

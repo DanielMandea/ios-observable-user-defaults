@@ -15,19 +15,18 @@
 Implementation 
 ```swift
 // Declare a new key
-extension Key {
-    static let sdkPort: Key = "sdkPort"
+extension ObservableKey {
+    static let sdkPort: ObservableKey = "sdkPort"
 }
 
 // Create my class
-class MyClass {
-    // Use the property wrapper to add new value to `UserDefaults`
+class SyncExample {
     @ObservableUserDefaults(key: .sdkPort, defaultValue: 8080)
     var sdkPort: Int
 }
 
 // Initialize my class
-var myClass = MyClass()
+var myClass = SyncExample()
 
 // Observe changes
 var observation = myClass.$sdkPort.observe { old, new in

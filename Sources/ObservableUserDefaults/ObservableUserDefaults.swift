@@ -20,14 +20,16 @@ public class ObservableUserDefaults<T: CachedValue> {
 
     public var wrappedValue: T {
         get { cached(for: key.rawValue, defaultValue: defaultValue) }
-        set { UserDefaults.standard.set(newValue, forKey: key.rawValue) }
+        set {
+            UserDefaults.standard.set(newValue, forKey: key.rawValue)
+        }
     }
     
-    var projectedValue: ObservableUserDefaults<T> { return self }
+    public var projectedValue: ObservableUserDefaults<T> { return self }
     
-    public func observe(change: @escaping (T, T) -> Void) -> NSObject {
+    public func observe(change: @escaping (T?, T) -> Void) -> NSObject {
         return UserDefaultsObservation(key: key) { old, new in
-            change(old as! T, new as! T)
+            change(old as? T, new as! T)
         }
     }
     
