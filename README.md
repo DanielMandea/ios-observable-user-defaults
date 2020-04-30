@@ -16,7 +16,7 @@ Implementation
 ```swift
 // Declare a new key
 extension Key {
-    static let sdkPort: Key = "v"
+    static let sdkPort: Key = "sdkPort"
 }
 
 // Create my class
