@@ -11,12 +11,14 @@ import Foundation
 public class UserDefaultsObservation: NSObject {
     public let key: ObservableKey
     private var onChange: (Any, Any) -> Void
+    private var userDefaults: UserDefaults
 
-    public init(key: ObservableKey, onChange: @escaping (Any, Any) -> Void) {
-        self.onChange = onChange
+    public init(key: ObservableKey, userDefaults: UserDefaults, onChange: @escaping (Any, Any) -> Void) {
         self.key = key
+        self.onChange = onChange
+        self.userDefaults = userDefaults
         super.init()
-        UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, options: [.old, .new], context: nil)
+        self.userDefaults.addObserver(self, forKeyPath: key.rawValue, options: [.old, .new], context: nil)
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
@@ -25,6 +27,6 @@ public class UserDefaultsObservation: NSObject {
     }
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue, context: nil)
+        userDefaults.removeObserver(self, forKeyPath: key.rawValue, context: nil)
     }
 }
