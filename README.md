@@ -7,7 +7,7 @@ This package contains `UserDefaults`  property wrapper. The property wrapper has
 To  install this package just add the follwing in yor package 
 
 ``` swift 
-.package(url: "https://github.ibmgcloud.net/ePA/ios-observable-user-defaults", from: "1.0.0"),
+.package(url: "https://github.com/DanielMandea/ios-observable-user-defaults", from: "1.0.0"),
 ```
 
 # Usage 
